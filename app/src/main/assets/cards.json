@@ -1,0 +1,61 @@
+{
+  "cards": [
+    {
+      "text": "¡asdasd!",
+      "image": "asdasd",
+      "character": "asdasd",
+      "left": "No",
+      "right": "Si",
+      "effects_left": [
+        15,
+        -5,
+        -20,
+        -5
+      ],
+      "effects_right": [
+        -30,
+        -5,
+        0,
+        0
+      ]
+    },
+    {
+      "text": "asdasd",
+      "image": "asdad",
+      "character": "asdasd",
+      "left": "Ni loco",
+      "right": "Sin problema",
+      "effects_left": [
+        5,
+        10,
+        0,
+        5
+      ],
+      "effects_right": [
+        -3,
+        -5,
+        10,
+        2
+      ]
+    },
+    {
+      "text": "asdasd",
+      "image": "asdasd",
+      "character": "asdasd",
+      "left": "Para ti",
+      "right": "Lo defenderé con mi sangre",
+      "effects_left": [
+        5,
+        10,
+        0,
+        5
+      ],
+      "effects_right": [
+        -3,
+        -5,
+        10,
+        2
+      ]
+    }
+  ]
+}
