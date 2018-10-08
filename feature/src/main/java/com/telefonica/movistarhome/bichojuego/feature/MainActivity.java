@@ -122,12 +122,20 @@ public class MainActivity extends Activity {
             public void onCardSwiped(SwipeDirection direction) {
                 Log.d("CardStackView", "onCardSwiped: " + direction.toString());
                 Log.d("CardStackView", "topIndex: " + cardStackView.getTopIndex());
-                if (cardStackView.getTopIndex() == adapter.getCount() - 5) {
-                    Log.d("CardStackView", "Paginate: " + cardStackView.getTopIndex());
-                    paginate();
+                if (gameOver) {
+                    gameOver = false;
+                    for (int i=0; i< indicators.length; i++){
+                        indicators[i] = 10;
+                    }
+                    reload();
+                } else {
+                    if (cardStackView.getTopIndex() == adapter.getCount() - 5) {
+                        Log.d("CardStackView", "Paginate: " + cardStackView.getTopIndex());
+                        paginate();
+                    }
+                    updateIndicators(direction == SwipeDirection.Left);
+                    updateCard();
                 }
-                updateIndicators(direction == SwipeDirection.Left);
-                updateCard();
             }
 
             @Override
@@ -150,6 +158,7 @@ public class MainActivity extends Activity {
     private void reload() {
         cardStackView.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
+        cardIndex = 0;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -252,25 +261,25 @@ public class MainActivity extends Activity {
         }
         for (int i = 0; i < update.length; i++) {
             this.indicators[i] = this.indicators[i] + update[i];
+            Log.i("INDICATORS", Arrays.toString(this.indicators));
             if (this.indicators[i] < 1 || this.indicators[i] > 20) {
                 cards.clear();
-                String maxMin = this.indicators[i] < 1 ? "_min": "_max";
+                String maxMin = this.indicators[i] < 1 ? "_min" : "_max";
                 String lostReason = this.indicatorNames[i] + maxMin;
                 Log.i("LOST", lostReason);
                 gameOver = true;
                 Card gameOverCard = (readCard(getApplicationContext(), lostReason));
                 cards.add(gameOverCard);
-                cardIndex= 0;
-                cardStackView.setSwipeEnabled(false);
+                //cardStackView.setSwipeEnabled(false);
                 reload();
                 break;
             }
-            Log.i("INDICATORS", Arrays.toString(this.indicators));
         }
     }
 
     private void updateCard() {
         cardIndex++;
+        scoreText.setText(String.valueOf(100 * (cardIndex + 1)));
         if (cardIndex < cards.size()) {
             cardText.setText(cards.get(cardIndex).text);
             Log.i("CARDTEXT", cards.get(cardIndex).text);

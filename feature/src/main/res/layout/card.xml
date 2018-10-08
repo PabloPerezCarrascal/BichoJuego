@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/item_tourist_spot_card_image"
+            android:id="@+id/item_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop" />
@@ -33,7 +33,7 @@
                 android:layout_weight="0.5"
                 android:text="hola"
                 android:textColor="@android:color/white"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -44,7 +44,7 @@
                 android:gravity="end"
                 android:text="adios"
                 android:textColor="@android:color/white"
-                android:textSize="20sp"
+                android:textSize="15.0sp"
                 android:textStyle="bold" />
         </LinearLayout>
 

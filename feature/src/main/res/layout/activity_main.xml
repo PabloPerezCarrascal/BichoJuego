@@ -24,7 +24,7 @@
                 android:fontFamily="@font/audiowide"
                 android:gravity="center"
                 android:text="textotexto"
-                android:textSize="23sp" />
+                android:textSize="22sp" />
 
 
         </LinearLayout>
