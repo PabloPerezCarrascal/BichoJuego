@@ -8,73 +8,149 @@
         "left": "Ni de broma",
         "right": "Ahora mismo, amo",
         "effects_left": [
-          15,
-          -5,
-          -20,
-          -5
+          -3,
+          2,
+          2,
+          -1
         ],
         "effects_right": [
-          -30,
-          -5,
-          0,
-          0
+          3,
+          -4,
+          -4,
+          -1
         ]
       },
       {
         "text": "Creo que este código necesita un refactor... Necesito un mes",
         "image": "conrad",
         "character": "Dark Console",
-        "left": "Ahora no es buen momento",
-        "right": "Claro, empieza de cero si quieres",
+        "left": "¡Imposible!",
+        "right": "Lo que necesites",
         "effects_left": [
-          5,
-          10,
           0,
-          5
+          -3,
+          -3,
+          2
         ],
         "effects_right": [
-          -3,
           -5,
-          10,
-          2
+          3,
+          3,
+          -4
         ]
       },
       {
-        "text": "No podemos permitirnos tantos programadores senior... despedimos a 3 y traemos 2 becarios",
+        "text": "Los programadores senior son caros... despedimos a 3 y traemos 2 becarios",
         "image": "conchi",
         "character": "Conchi",
-        "left": "Qué gran idea!",
+        "left": "¡Genial!",
         "right": "Imposible, hundirás el proyecto",
         "effects_left": [
-          5,
-          10,
           0,
+          -5,
+          -5,
           5
         ],
         "effects_right": [
-          -3,
-          -5,
-          10,
-          2
+          0,
+          3,
+          3,
+          -4
         ]
       },
       {
-        "text": "Tenemos que hacer una demo en 5 minutos... preparadme algo",
-        "image": "pointy_haired_boss",
-        "character": "Ilon Más",
-        "left": "Ni de broma",
-        "right": "Ahora mismo, amo",
+        "text": "Tenemos la campaña en Twitter... he dicho que salimos mañana",
+        "image": "community_manager",
+        "character": "Community Manager Jr",
+        "left": "¿Qué?",
+        "right": "Magnífico trabajo",
         "effects_left": [
-          15,
+          -3,
           -5,
-          -20,
-          -5
+          -5,
+          0
         ],
         "effects_right": [
-          -30,
+          6,
           -5,
+          -6,
+          3
+        ]
+      },
+      {
+        "text": "¿Vais a cambiar ese icono? Hay que pasar un regresivo...",
+        "image": "qa_engineer",
+        "character": "Don Pegas",
+        "left": "Pasando...",
+        "right": "La calidad es lo primero",
+        "effects_left": [
           0,
-          0
+          -1,
+          -1,
+          1
+        ],
+        "effects_right": [
+          0,
+          1,
+          2,
+          -2
+        ]
+      },
+      {
+        "text": "Acabo de poner la PR, mergea si quieres ... aunque no he podido probarlo",
+        "image": "developer",
+        "character": "Señor Workaround",
+        "left": "¿Seguro?",
+        "right": "¡Adelante!",
+        "effects_left": [
+          0,
+          1,
+          2,
+          -1
+        ],
+        "effects_right": [
+          0,
+          1,
+          -2,
+          -1
+        ]
+      },
+      {
+        "text": "Los despliegues en máquinas físicas son tan vintage... llevémoslo a la nube",
+        "image": "sysadmin",
+        "character": "Master of Puppet",
+        "left": "Ufff",
+        "right": "¡Gran idea!",
+        "effects_left": [
+          0,
+          0,
+          0,
+          -3
+        ],
+        "effects_right": [
+          1,
+          0,
+          0,
+          3
+        ]
+      },
+      {
+        "text": "En el siguiente sprint tenemos que meter computación cuántica en el condensador de fluzo",
+        "image": "product",
+        "character": "Bender Motos",
+        "left": "¿Qué dice?",
+        "right": "Si es cuántico es mejor",
+        "effects_left": [
+          0,
+          3,
+          3,
+          3
+        ],
+        "effects_right": [
+          6,
+          -3,
+          -3,
+          -4
         ]
       }
     ],
@@ -272,8 +348,8 @@
         ]
       }
     ],
-    "hype_max": {
-      "text": "PERDISTE POR HYPE MAX",
+    "hype_min": {
+      "text": "Te quedas sin proyectos. Tu empresa quiebra.",
       "image": "skull",
       "character": "",
       "left": "",
@@ -291,8 +367,122 @@
         0
       ]
     },
-    "hype_min": {
-      "text": "PERDISTE POR HYPE MIN",
+    "hype_max": {
+      "text": "Tu empresa sólo vende vaporware. Pierdes credibilidad. Tu empresa quiebra.",
+      "image": "skull",
+      "character": "",
+      "left": "",
+      "right": "",
+      "effects_left": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "effects_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "crew_min": {
+      "text": " Tus empleados están muy descontentos y fletan un charter a Palo Alto donde programan felices para Gugüel.",
+      "image": "skull",
+      "character": "",
+      "left": "",
+      "right": "",
+      "effects_left": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "effects_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "crew_max": {
+      "text": "Tus empleados están tan satisfechos que se montan un spin off. Tu empresa quiebra.",
+      "image": "skull",
+      "character": "",
+      "left": "",
+      "right": "",
+      "effects_left": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "effects_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "software_min": {
+      "text": "Tu software es de pésima calidad. Se pasan a los productos de la competencia.",
+      "image": "skull",
+      "character": "",
+      "left": "",
+      "right": "",
+      "effects_left": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "effects_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "software_max": {
+      "text": "Tu software es tan genial que los extraterrestres intervienen y te borran el repositorio para que la vida en la tierra no se desestabilice.",
+      "image": "skull",
+      "character": "",
+      "left": "",
+      "right": "",
+      "effects_left": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "effects_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "money_min": {
+      "text": "Tus finanzas son pésimas. Estás arruinado.",
+      "image": "skull",
+      "character": "",
+      "left": "",
+      "right": "",
+      "effects_left": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "effects_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "money_max": {
+      "text": "Ganas tanto dinero que eres investigado. Descubren tus cuentas en las Islas Lagartija.",
       "image": "skull",
       "character": "",
       "left": "",
