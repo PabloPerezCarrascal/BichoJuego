@@ -75,4 +75,31 @@ public class Utils {
         }
     }
 
+    public static Card readCard(Context context, String cardType) {
+        try {
+            JSONObject cardsJson = new JSONObject(loadJSONFromAsset(context));
+            JSONObject cardsObject = cardsJson.getJSONObject("cards");
+            JSONObject cardJson = cardsObject.getJSONObject(cardType);
+
+            String text = cardJson.getString("text");
+            String image = cardJson.getString("image");
+            String character = cardJson.getString("character");
+            String left = cardJson.getString("left");
+            String right = cardJson.getString("right");
+            JSONArray arrayLeft = cardJson.optJSONArray("effects_left");
+            JSONArray arrayRight = cardJson.optJSONArray("effects_right");
+            int[] effects_left = new int[arrayLeft.length()];
+            int[] effects_right = new int[arrayRight.length()];
+            for (int j = 0; j < arrayLeft.length(); ++j) {
+                effects_left[j] = arrayLeft.optInt(j);
+                effects_right[j] = arrayRight.optInt(j);
+            }
+
+            return new Card(text, left, right, character, image, effects_left, effects_right);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }
