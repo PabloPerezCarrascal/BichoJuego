@@ -32,7 +32,7 @@ public class CardAdapter extends ArrayAdapter<Card> {
 
         Card card = getItem(position);
 
-        holder.text.setText(card.text);
+  //      holder.text.setText(card.text);
         holder.character.setText(card.character);
         holder.left.setText(card.left);
         holder.right.setText(card.right);
@@ -43,14 +43,14 @@ public class CardAdapter extends ArrayAdapter<Card> {
     }
 
     private static class ViewHolder {
-        public TextView text;
+//        public TextView text;
         public TextView character;
         public TextView left;
         public TextView right;
         public ImageView image;
 
         public ViewHolder(View view) {
-            this.text = view.findViewById(R.id.item_text);
+//            this.text = view.findViewById(R.id.item_text);
             this.character = view.findViewById(R.id.item_character);
             this.left = view.findViewById(R.id.item_left);
             this.right = view.findViewById(R.id.item_right);

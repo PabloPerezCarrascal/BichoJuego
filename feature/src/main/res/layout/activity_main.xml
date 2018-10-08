@@ -1,48 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <com.yuyakaido.android.cardstackview.CardStackView
-        android:id="@+id/cardstack"
-        android:layout_width="500dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:clipToPadding="false"
-        android:paddingLeft="16dp"
-        android:paddingTop="32dp"
-        android:paddingRight="16dp"
-        android:paddingBottom="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
 
-        app:stackFrom="bottom"
-        app:swipeDirection="freedom_no_bottom">
-
-        <TextView
-            android:id="@+id/next_word"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hello World!" />
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
 
-        <TextView
-            android:id="@+id/main_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello aaaAAAAA!" />
 
-    </com.yuyakaido.android.cardstackview.CardStackView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/card_text"
+                android:textSize="30sp"
+                android:text="textotexto"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent">
+
+                <com.yuyakaido.android.cardstackview.CardStackView
+                    android:id="@+id/cardstack"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingBottom="32dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="32dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:stackFrom="bottom"
+                    app:swipeDirection="freedom_no_bottom"
+                    app:visibleCount="1">
+
+
+                </com.yuyakaido.android.cardstackview.CardStackView>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/activity_main_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true" />
 
 </RelativeLayout>

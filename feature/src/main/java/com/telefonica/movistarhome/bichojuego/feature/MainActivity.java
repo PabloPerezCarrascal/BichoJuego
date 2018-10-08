@@ -19,6 +19,7 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.yuyakaido.android.cardstackview.CardStackView;
 import com.yuyakaido.android.cardstackview.SwipeDirection;
@@ -35,11 +36,14 @@ public class MainActivity extends Activity {
     private CardStackView cardStackView;
     private CardAdapter adapter;
     List<Card> cards = new ArrayList<>();
+    private TextView cardText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        cardText = findViewById(R.id.card_text);
 
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 1);
 
@@ -81,6 +85,7 @@ public class MainActivity extends Activity {
     private CardAdapter createCardCardAdapter() {
         final CardAdapter adapter = new CardAdapter(getApplicationContext());
         cards = Utils.createCards(getApplicationContext());
+        cardText.setText(cards.get(0).text);
         adapter.addAll(cards);
         return adapter;
     }
@@ -102,6 +107,7 @@ public class MainActivity extends Activity {
                     Log.d("CardStackView", "Paginate: " + cardStackView.getTopIndex());
                     paginate();
                 }
+                updateCard();
             }
 
             @Override
@@ -179,6 +185,7 @@ public class MainActivity extends Activity {
         overlayAnimationSet.playTogether(overlayAnimator);
 
         cardStackView.swipe(SwipeDirection.Left, cardAnimationSet, overlayAnimationSet);
+        this.updateCard();
     }
 
     public void swipeRight() {
@@ -210,6 +217,16 @@ public class MainActivity extends Activity {
         overlayAnimationSet.playTogether(overlayAnimator);
 
         cardStackView.swipe(SwipeDirection.Right, cardAnimationSet, overlayAnimationSet);
+        this.updateCard();
+
+    }
+
+    private void updateCard() {
+        if (cardIndex < cards.size()) {
+            cardIndex++;
+            cardText.setText(cards.get(cardIndex).text);
+            Log.i("CARDTEXT", cards.get(cardIndex).text);
+        }
     }
 
     private void reverse() {

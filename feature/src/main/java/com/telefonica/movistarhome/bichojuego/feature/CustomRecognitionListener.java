@@ -64,13 +64,11 @@ public class CustomRecognitionListener implements RecognitionListener {
                 if (stripAccentsAndStuff(matches.get(i)).contains(stripAccentsAndStuff(act.cards.get(act.cardIndex).left))) {
                     Log.i("SPEECH", "SWIPELEFT");
                     act.swipeLeft();
-                    act.cardIndex++;
                     break;
                 }
                 if (stripAccentsAndStuff(matches.get(i)).contains(stripAccentsAndStuff(act.cards.get(act.cardIndex).right))) {
                     Log.i("SPEECH", "SWIPERIGHT");
                     act.swipeRight();
-                    act.cardIndex++;
                     break;
                 }
             }

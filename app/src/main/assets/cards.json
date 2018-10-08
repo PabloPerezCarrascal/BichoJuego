@@ -1,9 +1,9 @@
 {
   "cards": [
     {
-      "text": "¡asdasd!",
-      "image": "asdasd",
-      "character": "asdasd",
+      "text": "¡Conectadme el coche!",
+      "image": "https://www.publico.es/files/article_main//files/crop/uploads/2017/05/12/59161cf331026.r_1494621434735.0-20-750-407.jpg",
+      "character": "Jefe Loco",
       "left": "No",
       "right": "Si",
       "effects_left": [
@@ -20,9 +20,9 @@
       ]
     },
     {
-      "text": "asdasd",
-      "image": "asdad",
-      "character": "asdasd",
+      "text": "Hemos pensado que queremos hacer un rediseño de todos los botones",
+      "image": "https://s1.significados.com/foto/hipster-358479-1920_sm.jpg",
+      "character": "UX LOCOS",
       "left": "Ni loco",
       "right": "Sin problema",
       "effects_left": [
@@ -39,9 +39,9 @@
       ]
     },
     {
-      "text": "asdasd",
-      "image": "asdasd",
-      "character": "asdasd",
+      "text": "¿Me dejas tu cacharro un momento?",
+      "image": "https://3.bp.blogspot.com/-HlTnXcPiokM/WnrEFLHFJlI/AAAAAAAAIzA/foUeWZJOkCoLKm09_IdGihOqJFovJDPdgCLcBGAs/s1600/Javi%2BEspinosa_Blog.png",
+      "character": "Javi",
       "left": "Para ti",
       "right": "Lo defenderé con mi sangre",
       "effects_left": [
