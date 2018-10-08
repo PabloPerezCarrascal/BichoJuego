@@ -177,11 +177,11 @@
         ]
       },
       {
-        "text": "Las fechas son inamovibles, tenemos que hacer un esfuerzo extra.",
+        "text": "El final del proyecto está cerca, tenemos que hacer un esfuerzo extra.",
         "image": "pointy_haired_boss",
         "character": "Ilon Más",
-        "left": "Trabajaremos el fin de semana",
-        "right": "Negociaremos con el cliente",
+        "left": "Echaremos más horas",
+        "right": "Negociaremos las fechas",
         "effects_left": [
           -1,
           -3,
