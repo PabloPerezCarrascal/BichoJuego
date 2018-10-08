@@ -11,70 +11,121 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="90dp"
             android:orientation="horizontal"
+            android:paddingBottom="10dp"
             android:paddingTop="10dp">
 
 
-
             <TextView
+                android:id="@+id/card_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/card_text"
-                android:textSize="30sp"
+                android:fontFamily="@font/audiowide"
+                android:gravity="center"
                 android:text="textotexto"
-                android:gravity="center"/>
+                android:textSize="23sp" />
+
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="380dp"
+            android:background="@drawable/background">
 
             <LinearLayout
                 android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_height="match_parent">
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_hype" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_crew" />
 
 
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="3">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="20dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/card_back"/>
+
 
                 <com.yuyakaido.android.cardstackview.CardStackView
                     android:id="@+id/cardstack"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clipToPadding="false"
-                    android:paddingBottom="32dp"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:paddingTop="32dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:stackFrom="bottom"
-                    app:swipeDirection="freedom_no_bottom"
+                    app:swipeDirection="horizontal"
                     app:visibleCount="1">
 
 
                 </com.yuyakaido.android.cardstackview.CardStackView>
 
 
-            </LinearLayout>
+            </RelativeLayout>
 
 
             <LinearLayout
                 android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_height="match_parent">
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_software" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_money" />
 
 
             </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/score"
+                android:text="100"
+                android:fontFamily="@font/press_start_2p"
+                android:textSize="28sp"/>
 
         </LinearLayout>
 

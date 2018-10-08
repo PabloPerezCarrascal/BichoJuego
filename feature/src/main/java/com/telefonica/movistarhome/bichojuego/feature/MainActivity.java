@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
+import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -37,6 +39,7 @@ public class MainActivity extends Activity {
     private CardAdapter adapter;
     List<Card> cards = new ArrayList<>();
     private TextView cardText;
+    private TextView scoreText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,11 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         cardText = findViewById(R.id.card_text);
+        scoreText = findViewById(R.id.score);
+
+        Typeface typeface = ResourcesCompat.getFont(this, R.font.press_start_2p);
+        cardText.setTypeface(typeface);
+        scoreText.setTypeface(typeface);
 
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 1);
 
@@ -222,8 +230,8 @@ public class MainActivity extends Activity {
     }
 
     private void updateCard() {
+        cardIndex++;
         if (cardIndex < cards.size()) {
-            cardIndex++;
             cardText.setText(cards.get(cardIndex).text);
             Log.i("CARDTEXT", cards.get(cardIndex).text);
         }

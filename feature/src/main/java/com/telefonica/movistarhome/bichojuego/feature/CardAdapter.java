@@ -1,6 +1,8 @@
 package com.telefonica.movistarhome.bichojuego.feature;
 
 import android.content.Context;
+import android.graphics.Typeface;
+import android.support.v4.content.res.ResourcesCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +38,10 @@ public class CardAdapter extends ArrayAdapter<Card> {
         holder.character.setText(card.character);
         holder.left.setText(card.left);
         holder.right.setText(card.right);
-
+        Typeface typeface = ResourcesCompat.getFont(this.getContext(), R.font.press_start_2p);
+        holder.left.setTypeface(typeface);
+        holder.right.setTypeface(typeface);
+        holder.character.setTypeface(typeface);
         Glide.with(getContext()).load(card.image).into(holder.image);
 
         return contentView;
