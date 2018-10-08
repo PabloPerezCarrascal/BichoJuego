@@ -80,100 +80,176 @@
     ],
     "medium": [
       {
-        "text": "Tenemos que hacer una demo en 5 minutos... preparadme algo",
-        "image": "pointy_haired_boss",
-        "character": "Ilon Más",
-        "left": "Ni de broma",
-        "right": "Ahora mismo, amo",
+        "text": "Quiero un aumento o me vuelvo a jamaica",
+        "image": "conrad",
+        "character": "Dark Console",
+        "left": "Peace!",
+        "right": "Please!",
         "effects_left": [
-          15,
-          -5,
-          -20,
-          -5
+          3,
+          1,
+          2,
+          -3
         ],
         "effects_right": [
-          -30,
-          -5,
-          0,
+          -1,
+          -1,
+          -1,
           0
         ]
       },
       {
-        "text": "Creo que este código necesita un refactor... Necesito un mes",
+        "text": "Tengo una idea que revolucionará el mundo",
         "image": "conrad",
         "character": "Dark Console",
-        "left": "Ahora no es buen momento",
-        "right": "Claro, empieza de cero si quieres",
+        "left": "No me interesa",
+        "right": "Cuéntame más",
         "effects_left": [
           5,
-          10,
-          0,
-          5
+          -1,
+          2,
+          -5
         ],
         "effects_right": [
+          0,
+          1,
+          -2,
+          -1
+        ]
+      },
+      {
+        "text": "Necesito hacer una prueba que sólo se reproduce de madrugada",
+        "image": "qa_engineer",
+        "character": "Don Pegas",
+        "left": "Sólo se prueba en horario de oficina",
+        "right": "Claro, horas extra",
+        "effects_left": [
+          0,
+          1,
+          2,
+          -1
+        ],
+        "effects_right": [
+          0,
+          0,
           -3,
-          -5,
-          10,
+          -1
+        ]
+      },
+      {
+        "text": "Hay que ir preparandose para el efecto 2038",
+        "image": "qa_engineer",
+        "character": "Don Pegas",
+        "left": "Se arregla cambiando CPUs",
+        "right": "Ahora mismo",
+        "effects_left": [
+          0,
+          0,
+          -3,
+          -3
+        ],
+        "effects_right": [
+          1,
+          0,
+          2,
           2
         ]
       },
       {
-        "text": "No podemos permitirnos tantos programadores senior... despedimos a 3 y traemos 2 becarios",
-        "image": "conchi",
-        "character": "Conchi",
-        "left": "Qué gran idea!",
-        "right": "Imposible, hundirás el proyecto",
+        "text": "En local funciona...",
+        "image": "developer",
+        "character": "Señor Workaround",
+        "left": "¡Prueba en maqueta!",
+        "right": "¡Merge!",
         "effects_left": [
-          5,
-          10,
           0,
-          5
+          -1,
+          2,
+          -1
         ],
         "effects_right": [
-          -3,
-          -5,
-          10,
-          2
+          0,
+          1,
+          -1,
+          -2
         ]
       }
     ],
     "hard": [
       {
-        "text": "Tenemos que hacer una demo en 5 minutos... preparadme algo",
+        "text": "Olvidé pagar las licencias",
         "image": "pointy_haired_boss",
         "character": "Ilon Más",
-        "left": "Ni de broma",
-        "right": "Ahora mismo, amo",
+        "left": "¿Cómo?",
+        "right": "¿Por qué?",
         "effects_left": [
-          15,
+          -2,
           -5,
-          -20,
-          -5
+          -5,
+          2
         ],
         "effects_right": [
-          -30,
+          -2,
           -5,
-          0,
-          0
+          -5,
+          2
         ]
       },
       {
-        "text": "Creo que este código necesita un refactor... Necesito un mes",
+        "text": "I had a dream! that all people do program in assembly...",
         "image": "conrad",
         "character": "Dark Console",
-        "left": "Ahora no es buen momento",
-        "right": "Claro, empieza de cero si quieres",
+        "left": "Estás a punto del despido",
+        "right": "Tú eres el gurú",
         "effects_left": [
-          5,
-          10,
+          -1,
+          1,
+          0,
+          0
+        ],
+        "effects_right": [
+          1,
+          -3,
+          3,
+          -5
+        ]
+      },
+      {
+        "text": "Por error subí la nómina a todos nuestros empleado",
+        "image": "conchi",
+        "character": "Conchi",
+        "left": "Hágalo devolver",
+        "right": "Es una bonificación",
+        "effects_left": [
+          -5,
+          0,
           0,
           5
         ],
         "effects_right": [
-          -3,
+          0,
+          5,
+          0,
+          -5
+        ]
+      },
+      {
+        "text": "Tenemos casos de wanna_cry_again_and_again",
+        "image": "sysadmin",
+        "character": "Master of Puppet",
+        "left": "Formateo masivo",
+        "right": "Que nadie trabaje",
+        "effects_left": [
           -5,
-          10,
-          2
+          0,
+          -5,
+          0
+        ],
+        "effects_right": [
+          -5,
+          1,
+          -2,
+          -2
         ]
       },
       {
