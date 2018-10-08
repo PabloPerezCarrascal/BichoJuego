@@ -42,8 +42,9 @@ public class CardAdapter extends ArrayAdapter<Card> {
         holder.left.setTypeface(typeface);
         holder.right.setTypeface(typeface);
         holder.character.setTypeface(typeface);
-        Glide.with(getContext()).load(card.image).into(holder.image);
-
+   //   Glide.with(getContext()).load(card.image).into(holder.image);
+        int id = getContext().getResources().getIdentifier(card.image, "drawable", getContext().getPackageName());
+        holder.image.setImageResource(id);
         return contentView;
     }
 

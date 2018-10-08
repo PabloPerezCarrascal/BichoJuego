@@ -43,28 +43,30 @@ public class Utils {
     public static List<Card> createCards(Context context) {
         try {
             JSONObject cardsJson = new JSONObject(loadJSONFromAsset(context));
-            JSONArray cardsArray = cardsJson.getJSONArray("cards");
+            JSONObject cardsObject = cardsJson.getJSONObject("cards");
+            String[] dificultyModes = {"easy", "medium", "hard"};
             List<Card> cards = new ArrayList<>();
+            for (int d = 0; d < dificultyModes.length; d++) {
+                JSONArray cardsSubArray = cardsObject.getJSONArray(dificultyModes[d]);
+                for (int i = 0; i < cardsSubArray.length(); i++) {
+                    JSONObject cardJson = cardsSubArray.getJSONObject(i);
+                    String text = cardJson.getString("text");
+                    String image = cardJson.getString("image");
+                    String character = cardJson.getString("character");
+                    String left = cardJson.getString("left");
+                    String right = cardJson.getString("right");
+                    JSONArray arrayLeft = cardJson.optJSONArray("effects_left");
+                    JSONArray arrayRight = cardJson.optJSONArray("effects_right");
+                    int[] effects_left = new int[arrayLeft.length()];
+                    int[] effects_right = new int[arrayRight.length()];
+                    for (int j = 0; j < arrayLeft.length(); ++j) {
+                        effects_left[j] = arrayLeft.optInt(j);
+                        effects_right[j] = arrayRight.optInt(j);
+                    }
 
-            for (int i = 0; i < cardsArray.length(); i++) {
-                JSONObject cardJson = cardsArray.getJSONObject(i);
-                String text = cardJson.getString("text");
-                String image = cardJson.getString("image");
-                String character = cardJson.getString("character");
-                String left = cardJson.getString("left");
-                String right = cardJson.getString("right");
-                JSONArray arrayLeft = cardJson.optJSONArray("effects_left");
-                JSONArray arrayRight = cardJson.optJSONArray("effects_right");
-                int[] effects_left = new int[arrayLeft.length()];
-                int[] effects_right = new int[arrayRight.length()];
-                for (int j = 0; j < arrayLeft.length(); ++j) {
-                    effects_left[j] = arrayLeft.optInt(j);
-                    effects_right[j] = arrayRight.optInt(j);
+                    cards.add(new Card(text, left, right, character, image, effects_left, effects_right));
                 }
-
-                cards.add(new Card(text, left, right, character, image, effects_left, effects_right));
             }
-
             return cards;
 
         } catch (JSONException e) {
