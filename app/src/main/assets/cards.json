@@ -1,60 +1,205 @@
 {
   "cards": [
     {
-      "text": "¡Conectadme el coche!",
-      "image": "https://www.publico.es/files/article_main//files/crop/uploads/2017/05/12/59161cf331026.r_1494621434735.0-20-750-407.jpg",
-      "character": "Jefe Loco",
-      "left": "No",
-      "right": "Si",
-      "effects_left": [
-        15,
-        -5,
-        -20,
-        -5
-      ],
-      "effects_right": [
-        -30,
-        -5,
-        0,
-        0
+      "easy": [
+        {
+          "text": "Tenemos que hacer una demo en 5 minutos... preparadme algo",
+          "image": "@drawable/pointy_haired_boss",
+          "character": "Ilon Más",
+          "left": "Ni de broma",
+          "right": "Ahora mismo, amo",
+          "effects_left": [
+            15,
+            -5,
+            -20,
+            -5
+          ],
+          "effects_right": [
+            -30,
+            -5,
+            0,
+            0
+          ]
+        },
+        {
+          "text": "Creo que este código necesita un refactor... Necesito un mes",
+          "image": "@drawable/conrad",
+          "character": "Dark Console",
+          "left": "Ahora no es buen momento",
+          "right": "Claro, empieza de cero si quieres",
+          "effects_left": [
+            5,
+            10,
+            0,
+            5
+          ],
+          "effects_right": [
+            -3,
+            -5,
+            10,
+            2
+          ]
+        },
+        {
+          "text": "No podemos permitirnos tantos programadores senior... despedimos a 3 y traemos 2 becarios",
+          "image": "@drawable/conchi",
+          "character": "Conchi",
+          "left": "Qué gran idea!",
+          "right": "Imposible, hundirás el proyecto",
+          "effects_left": [
+            5,
+            10,
+            0,
+            5
+          ],
+          "effects_right": [
+            -3,
+            -5,
+            10,
+            2
+          ]
+        },
+        {
+          "text": "Tenemos que hacer una demo en 5 minutos... preparadme algo",
+          "image": "@drawable/pointy_haired_boss",
+          "character": "Ilon Más",
+          "left": "Ni de broma",
+          "right": "Ahora mismo, amo",
+          "effects_left": [
+            15,
+            -5,
+            -20,
+            -5
+          ],
+          "effects_right": [
+            -30,
+            -5,
+            0,
+            0
+          ]
+        }
       ]
     },
     {
-      "text": "Hemos pensado que queremos hacer un rediseño de todos los botones",
-      "image": "https://s1.significados.com/foto/hipster-358479-1920_sm.jpg",
-      "character": "UX LOCOS",
-      "left": "Ni loco",
-      "right": "Sin problema",
-      "effects_left": [
-        5,
-        10,
-        0,
-        5
-      ],
-      "effects_right": [
-        -3,
-        -5,
-        10,
-        2
+      "medium": [
+        {
+          "text": "Tenemos que hacer una demo en 5 minutos... preparadme algo",
+          "image": "@drawable/pointy_haired_boss",
+          "character": "Ilon Más",
+          "left": "Ni de broma",
+          "right": "Ahora mismo, amo",
+          "effects_left": [
+            15,
+            -5,
+            -20,
+            -5
+          ],
+          "effects_right": [
+            -30,
+            -5,
+            0,
+            0
+          ]
+        },
+        {
+          "text": "Creo que este código necesita un refactor... Necesito un mes",
+          "image": "@drawable/conrad",
+          "character": "Dark Console",
+          "left": "Ahora no es buen momento",
+          "right": "Claro, empieza de cero si quieres",
+          "effects_left": [
+            5,
+            10,
+            0,
+            5
+          ],
+          "effects_right": [
+            -3,
+            -5,
+            10,
+            2
+          ]
+        },
+        {
+          "text": "No podemos permitirnos tantos programadores senior... despedimos a 3 y traemos 2 becarios",
+          "image": "@drawable/conchi",
+          "character": "Conchi",
+          "left": "Qué gran idea!",
+          "right": "Imposible, hundirás el proyecto",
+          "effects_left": [
+            5,
+            10,
+            0,
+            5
+          ],
+          "effects_right": [
+            -3,
+            -5,
+            10,
+            2
+          ]
+        }
       ]
     },
     {
-      "text": "¿Me dejas tu cacharro un momento?",
-      "image": "https://3.bp.blogspot.com/-HlTnXcPiokM/WnrEFLHFJlI/AAAAAAAAIzA/foUeWZJOkCoLKm09_IdGihOqJFovJDPdgCLcBGAs/s1600/Javi%2BEspinosa_Blog.png",
-      "character": "Javi",
-      "left": "Para ti",
-      "right": "Lo defenderé con mi sangre",
-      "effects_left": [
-        5,
-        10,
-        0,
-        5
-      ],
-      "effects_right": [
-        -3,
-        -5,
-        10,
-        2
+      "hard": [
+        {
+          "text": "Tenemos que hacer una demo en 5 minutos... preparadme algo",
+          "image": "@drawable/pointy_haired_boss",
+          "character": "Ilon Más",
+          "left": "Ni de broma",
+          "right": "Ahora mismo, amo",
+          "effects_left": [
+            15,
+            -5,
+            -20,
+            -5
+          ],
+          "effects_right": [
+            -30,
+            -5,
+            0,
+            0
+          ]
+        },
+        {
+          "text": "Creo que este código necesita un refactor... Necesito un mes",
+          "image": "@drawable/conrad",
+          "character": "Dark Console",
+          "left": "Ahora no es buen momento",
+          "right": "Claro, empieza de cero si quieres",
+          "effects_left": [
+            5,
+            10,
+            0,
+            5
+          ],
+          "effects_right": [
+            -3,
+            -5,
+            10,
+            2
+          ]
+        },
+        {
+          "text": "No podemos permitirnos tantos programadores senior... despedimos a 3 y traemos 2 becarios",
+          "image": "@drawable/conchi",
+          "character": "Conchi",
+          "left": "Qué gran idea!",
+          "right": "Imposible, hundirás el proyecto",
+          "effects_left": [
+            5,
+            10,
+            0,
+            5
+          ],
+          "effects_right": [
+            -3,
+            -5,
+            10,
+            2
+          ]
+        }
       ]
     }
   ]
