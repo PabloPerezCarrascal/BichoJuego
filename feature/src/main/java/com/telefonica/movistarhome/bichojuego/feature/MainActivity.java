@@ -20,6 +20,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -28,8 +29,11 @@ import com.yuyakaido.android.cardstackview.SwipeDirection;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+
+import static com.telefonica.movistarhome.bichojuego.feature.Utils.readCard;
 
 public class MainActivity extends Activity {
 
@@ -40,6 +44,11 @@ public class MainActivity extends Activity {
     List<Card> cards = new ArrayList<>();
     private TextView cardText;
     private TextView scoreText;
+    private ImageView cardImage;
+    private CardStackView cardStack;
+    private int[] indicators = {10, 10, 10, 10};
+    private String[] indicatorNames = {"hype", "crew", "software", "money"};
+    private boolean gameOver = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +57,7 @@ public class MainActivity extends Activity {
 
         cardText = findViewById(R.id.card_text);
         scoreText = findViewById(R.id.score);
-
+        cardImage = findViewById(R.id.item_image);
         Typeface typeface = ResourcesCompat.getFont(this, R.font.press_start_2p);
         cardText.setTypeface(typeface);
         scoreText.setTypeface(typeface);
@@ -79,7 +88,7 @@ public class MainActivity extends Activity {
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "es-ES");
 
         AudioManager audio = (AudioManager) act.getSystemService(Context.AUDIO_SERVICE);
-        audio.getStreamVolume(AudioManager.STREAM_MUSIC);
+        //audio.getStreamVolume(AudioManager.STREAM_MUSIC);
         audio.setStreamVolume(AudioManager.STREAM_MUSIC, 0, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 
         mSpeechRecognizer.setRecognitionListener(new CustomRecognitionListener(this, mSpeechRecognizer, mSpeechRecognizerIntent));
@@ -92,7 +101,9 @@ public class MainActivity extends Activity {
 
     private CardAdapter createCardCardAdapter() {
         final CardAdapter adapter = new CardAdapter(getApplicationContext());
-        cards = Utils.createCards(getApplicationContext());
+        if (!gameOver) {
+            cards = Utils.createCards(getApplicationContext());
+        }
         cardText.setText(cards.get(0).text);
         adapter.addAll(cards);
         return adapter;
@@ -115,6 +126,7 @@ public class MainActivity extends Activity {
                     Log.d("CardStackView", "Paginate: " + cardStackView.getTopIndex());
                     paginate();
                 }
+                updateIndicators(direction == SwipeDirection.Left);
                 updateCard();
             }
 
@@ -146,7 +158,7 @@ public class MainActivity extends Activity {
                 cardStackView.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
             }
-        }, 1000);
+        }, 0);
     }
 
     private LinkedList<Card> extractRemainingCards() {
@@ -193,6 +205,7 @@ public class MainActivity extends Activity {
         overlayAnimationSet.playTogether(overlayAnimator);
 
         cardStackView.swipe(SwipeDirection.Left, cardAnimationSet, overlayAnimationSet);
+        this.updateIndicators(true);
         this.updateCard();
     }
 
@@ -225,8 +238,35 @@ public class MainActivity extends Activity {
         overlayAnimationSet.playTogether(overlayAnimator);
 
         cardStackView.swipe(SwipeDirection.Right, cardAnimationSet, overlayAnimationSet);
+        this.updateIndicators(false);
         this.updateCard();
+    }
 
+
+    private void updateIndicators(Boolean isLeft) {
+        int[] update;
+        if (isLeft) {
+            update = this.cards.get(this.cardIndex).effects_left;
+        } else {
+            update = this.cards.get(this.cardIndex).effects_right;
+        }
+        for (int i = 0; i < update.length; i++) {
+            this.indicators[i] = this.indicators[i] + update[i];
+            if (this.indicators[i] < 1 || this.indicators[i] > 20) {
+                cards.clear();
+                String maxMin = this.indicators[i] < 1 ? "_min": "_max";
+                String lostReason = this.indicatorNames[i] + maxMin;
+                Log.i("LOST", lostReason);
+                gameOver = true;
+                Card gameOverCard = (readCard(getApplicationContext(), lostReason));
+                cards.add(gameOverCard);
+                cardIndex= 0;
+                cardStackView.setSwipeEnabled(false);
+                reload();
+                break;
+            }
+            Log.i("INDICATORS", Arrays.toString(this.indicators));
+        }
     }
 
     private void updateCard() {

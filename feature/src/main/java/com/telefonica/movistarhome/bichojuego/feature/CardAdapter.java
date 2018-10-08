@@ -60,7 +60,7 @@ public class CardAdapter extends ArrayAdapter<Card> {
             this.character = view.findViewById(R.id.item_character);
             this.left = view.findViewById(R.id.item_left);
             this.right = view.findViewById(R.id.item_right);
-            this.image = view.findViewById(R.id.item_tourist_spot_card_image);
+            this.image = view.findViewById(R.id.item_image);
         }
     }
 
