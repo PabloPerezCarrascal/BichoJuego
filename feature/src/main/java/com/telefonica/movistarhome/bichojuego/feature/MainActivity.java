@@ -159,6 +159,9 @@ public class MainActivity extends Activity {
         cardStackView.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
         cardIndex = 0;
+        if (!gameOver){
+            scoreText.setText("0");
+        }
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -278,8 +281,10 @@ public class MainActivity extends Activity {
     }
 
     private void updateCard() {
+        if (!gameOver) {
+            scoreText.setText(String.valueOf(100 * (cardIndex + 1)));
+        }
         cardIndex++;
-        scoreText.setText(String.valueOf(100 * (cardIndex + 1)));
         if (cardIndex < cards.size()) {
             cardText.setText(cards.get(cardIndex).text);
             Log.i("CARDTEXT", cards.get(cardIndex).text);
