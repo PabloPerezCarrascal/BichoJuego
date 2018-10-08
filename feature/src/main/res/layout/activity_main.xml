@@ -11,10 +11,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp">
+            android:paddingBottom="7dp"
+            android:paddingTop="7dp">
 
 
             <TextView
@@ -24,49 +25,42 @@
                 android:fontFamily="@font/audiowide"
                 android:gravity="center"
                 android:text="textotexto"
-                android:textSize="22sp" />
+                android:textSize="20sp" />
 
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="380dp"
-            android:background="@drawable/background">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_hype" />
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_crew" />
-
-
-            </LinearLayout>
+            android:layout_height="0dp"
+            android:layout_weight="5">
 
             <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="4">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/item_left"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="10dp"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:gravity="start"
+                    android:padding="5dp"
+                    android:textSize="17sp" />
 
                 <ImageView
-                    android:layout_width="match_parent"
+                    android:layout_width="372dp"
                     android:layout_height="match_parent"
                     android:paddingBottom="20dp"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="0dp"
                     android:paddingTop="20dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/card_back"/>
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/card_back" />
 
 
                 <com.yuyakaido.android.cardstackview.CardStackView
@@ -74,58 +68,113 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clipToPadding="false"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
+                    android:paddingLeft="250dp"
+                    android:paddingRight="250dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:stackFrom="bottom"
                     app:swipeDirection="horizontal"
+                    android:layout_centerHorizontal="true"
                     app:visibleCount="1">
 
 
                 </com.yuyakaido.android.cardstackview.CardStackView>
 
+                <TextView
+                    android:id="@+id/item_right"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:gravity="start"
+                    android:padding="5dp"
+                    android:textSize="17sp"
+                    android:layout_alignParentEnd="true"/>
+
 
             </RelativeLayout>
 
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_software" />
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_money" />
-
-
-            </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="15dp">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:id="@+id/score"
-                android:text="0"
-                android:fontFamily="@font/press_start_2p"
-                android:textSize="28sp"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3">
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:id="@+id/icon_hype"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_width="95dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/icon_hype_10" />
+
+                <ImageView
+                    android:id="@+id/icon_crew"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_width="95dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/icon_crew_10" />
+
+
+                <ImageView
+                    android:id="@+id/icon_software"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/icon_software_10"
+                    android:layout_width="95dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/icon_money"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_width="95dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/icon_money_10"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3">
+
+                <TextView
+                    android:id="@+id/score"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/press_start_2p"
+                    android:gravity="center"
+                    android:paddingTop="5dp"
+                    android:text="0"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="26sp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

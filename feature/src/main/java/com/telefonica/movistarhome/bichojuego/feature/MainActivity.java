@@ -8,10 +8,8 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
 import android.graphics.Typeface;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
@@ -27,7 +25,6 @@ import android.widget.TextView;
 import com.yuyakaido.android.cardstackview.CardStackView;
 import com.yuyakaido.android.cardstackview.SwipeDirection;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -49,35 +46,46 @@ public class MainActivity extends Activity {
     private int[] indicators = {10, 10, 10, 10};
     private String[] indicatorNames = {"hype", "crew", "software", "money"};
     private boolean gameOver = false;
+    private ImageView[] indicatorIcons = new ImageView[4];
+    private TextView leftText;
+    private TextView rightText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         cardText = findViewById(R.id.card_text);
         scoreText = findViewById(R.id.score);
         cardImage = findViewById(R.id.item_image);
+        indicatorIcons[0] = findViewById(R.id.icon_hype);
+        indicatorIcons[1] = findViewById(R.id.icon_crew);
+        indicatorIcons[2] = findViewById(R.id.icon_software);
+        indicatorIcons[3] = findViewById(R.id.icon_money);
+        leftText = findViewById(R.id.item_left);
+        rightText = findViewById(R.id.item_right);
+
         Typeface typeface = ResourcesCompat.getFont(this, R.font.press_start_2p);
         cardText.setTypeface(typeface);
         scoreText.setTypeface(typeface);
+        leftText.setTypeface(typeface);
+        rightText.setTypeface(typeface);
 
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 1);
 
-        MediaPlayer mediaPlayer = new MediaPlayer();
-        AssetFileDescriptor afd = this.getApplicationContext().getResources().openRawResourceFd(R.raw.cancion);
-
-        mediaPlayer.reset();
-        //mediaPlayer.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
-
-        try {
-            mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getDeclaredLength());
-            mediaPlayer.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        mediaPlayer.start();
+//        MediaPlayer mediaPlayer = new MediaPlayer();
+//        AssetFileDescriptor afd = this.getApplicationContext().getResources().openRawResourceFd(R.raw.cancion);
+//
+//        mediaPlayer.reset();
+//        //mediaPlayer.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
+//
+//        try {
+//            mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getDeclaredLength());
+//            mediaPlayer.prepare();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        mediaPlayer.start();
 
 
         final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
@@ -89,10 +97,10 @@ public class MainActivity extends Activity {
 
         AudioManager audio = (AudioManager) act.getSystemService(Context.AUDIO_SERVICE);
         //audio.getStreamVolume(AudioManager.STREAM_MUSIC);
-        audio.setStreamVolume(AudioManager.STREAM_MUSIC, 0, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
+        //audio.setStreamVolume(AudioManager.STREAM_MUSIC, 0, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 
         mSpeechRecognizer.setRecognitionListener(new CustomRecognitionListener(this, mSpeechRecognizer, mSpeechRecognizerIntent));
-        mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
+//        mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
 
         setup();
         reload();
@@ -105,6 +113,8 @@ public class MainActivity extends Activity {
             cards = Utils.createCards(getApplicationContext());
         }
         cardText.setText(cards.get(0).text);
+        leftText.setText(cards.get(0).left);
+        rightText.setText(cards.get(0).right);
         adapter.addAll(cards);
         return adapter;
     }
@@ -124,8 +134,10 @@ public class MainActivity extends Activity {
                 Log.d("CardStackView", "topIndex: " + cardStackView.getTopIndex());
                 if (gameOver) {
                     gameOver = false;
-                    for (int i=0; i< indicators.length; i++){
+                    for (int i = 0; i < indicators.length; i++) {
                         indicators[i] = 10;
+                        int id = getApplicationContext().getResources().getIdentifier("icon_" + indicatorNames[i] + "_10", "drawable", getApplicationContext().getPackageName());
+                        indicatorIcons[i].setImageResource(id);
                     }
                     reload();
                 } else {
@@ -159,7 +171,7 @@ public class MainActivity extends Activity {
         cardStackView.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
         cardIndex = 0;
-        if (!gameOver){
+        if (!gameOver) {
             scoreText.setText("0");
         }
         new Handler().postDelayed(new Runnable() {
@@ -265,11 +277,15 @@ public class MainActivity extends Activity {
         for (int i = 0; i < update.length; i++) {
             this.indicators[i] = this.indicators[i] + update[i];
             Log.i("INDICATORS", Arrays.toString(this.indicators));
-            if (this.indicators[i] < 1 || this.indicators[i] > 20) {
+            if (this.indicators[i] < 1 || this.indicators[i] > 19) {
                 cards.clear();
                 String maxMin = this.indicators[i] < 1 ? "_min" : "_max";
+                this.indicators[i] = this.indicators[i] < 1 ? 0 : 20;
+                int value = this.indicators[i] < 1 ? 0 : 20;
                 String lostReason = this.indicatorNames[i] + maxMin;
                 Log.i("LOST", lostReason);
+                int id = this.getApplicationContext().getResources().getIdentifier("icon_" + this.indicatorNames[i] + "_" + String.valueOf(value), "drawable", getApplicationContext().getPackageName());
+                indicatorIcons[i].setImageResource(id);
                 gameOver = true;
                 Card gameOverCard = (readCard(getApplicationContext(), lostReason));
                 cards.add(gameOverCard);
@@ -277,7 +293,10 @@ public class MainActivity extends Activity {
                 reload();
                 break;
             }
+            int id = this.getApplicationContext().getResources().getIdentifier("icon_" + this.indicatorNames[i] + "_" + String.valueOf(this.indicators[i]), "drawable", getApplicationContext().getPackageName());
+            indicatorIcons[i].setImageResource(id);
         }
+
     }
 
     private void updateCard() {
@@ -287,6 +306,8 @@ public class MainActivity extends Activity {
         cardIndex++;
         if (cardIndex < cards.size()) {
             cardText.setText(cards.get(cardIndex).text);
+            leftText.setText(cards.get(cardIndex).left);
+            rightText.setText(cards.get(cardIndex).right);
             Log.i("CARDTEXT", cards.get(cardIndex).text);
         }
     }

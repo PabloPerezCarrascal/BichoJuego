@@ -36,11 +36,11 @@ public class CardAdapter extends ArrayAdapter<Card> {
 
   //      holder.text.setText(card.text);
         holder.character.setText(card.character);
-        holder.left.setText(card.left);
-        holder.right.setText(card.right);
+//        holder.left.setText(card.left);
+//        holder.right.setText(card.right);
         Typeface typeface = ResourcesCompat.getFont(this.getContext(), R.font.press_start_2p);
-        holder.left.setTypeface(typeface);
-        holder.right.setTypeface(typeface);
+//        holder.left.setTypeface(typeface);
+//        holder.right.setTypeface(typeface);
         holder.character.setTypeface(typeface);
    //   Glide.with(getContext()).load(card.image).into(holder.image);
         int id = getContext().getResources().getIdentifier(card.image, "drawable", getContext().getPackageName());
@@ -51,15 +51,15 @@ public class CardAdapter extends ArrayAdapter<Card> {
     private static class ViewHolder {
 //        public TextView text;
         public TextView character;
-        public TextView left;
-        public TextView right;
+//        public TextView left;
+//        public TextView right;
         public ImageView image;
 
         public ViewHolder(View view) {
 //            this.text = view.findViewById(R.id.item_text);
             this.character = view.findViewById(R.id.item_character);
-            this.left = view.findViewById(R.id.item_left);
-            this.right = view.findViewById(R.id.item_right);
+//            this.left = view.findViewById(R.id.item_left);
+//            this.right = view.findViewById(R.id.item_right);
             this.image = view.findViewById(R.id.item_image);
         }
     }
