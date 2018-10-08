@@ -123,7 +123,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:id="@+id/score"
-                android:text="100"
+                android:text="0"
                 android:fontFamily="@font/press_start_2p"
                 android:textSize="28sp"/>
 

@@ -49,7 +49,8 @@ public class CustomRecognitionListener implements RecognitionListener {
 
     @Override
     public void onError(int i) {
-        Log.i("SPEECH", "onError");
+        Log.i("SPEECH", "onError" + String.valueOf(i));
+        sp.stopListening();
         sp.startListening(in);
     }
 
