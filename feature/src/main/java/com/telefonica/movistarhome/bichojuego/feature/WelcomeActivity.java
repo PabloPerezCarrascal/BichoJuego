@@ -1,8 +1,12 @@
 package com.telefonica.movistarhome.bichojuego.feature;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.res.ResourcesCompat;
@@ -14,6 +18,8 @@ import com.hanks.htextview.base.HTextView;
 import com.hanks.htextview.fade.FadeTextView;
 import com.hanks.htextview.base.AnimationListener;
 
+import java.io.IOException;
+
 
 public class WelcomeActivity extends Activity {
 
@@ -23,6 +29,7 @@ public class WelcomeActivity extends Activity {
             "Tus decisiones afectarán a 4 factores de tu empresa que deben mantenerse equilibrados.",
             "Tu intuición y memoria te ayudarán a mantenerte en el puesto."};
     FadeTextView textView;
+    MediaPlayer mediaPlayer = new MediaPlayer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +40,30 @@ public class WelcomeActivity extends Activity {
         Typeface typeface = ResourcesCompat.getFont(this, R.font.press_start_2p);
         textView.setTypeface(typeface);
 
+        AudioManager audio = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
+        audio.setStreamVolume(AudioManager.STREAM_MUSIC, 7, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
+
         textView.setAnimationListener(new AnimationListener() {
             @Override
             public void onAnimationEnd(HTextView hTextView) {
-                if (step < 3) {
+                if (step < 4) {
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             textView.animateText(tuto[step]);
                             step++;
+                            int id = getApplicationContext().getResources().getIdentifier("locu_" + String.valueOf(step), "raw", getApplicationContext().getPackageName());
+                            AssetFileDescriptor afd = getApplicationContext().getResources().openRawResourceFd(id);
+                            mediaPlayer.reset();
+                            try {
+                                mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getDeclaredLength());
+                                mediaPlayer.prepare();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            mediaPlayer.start();
+
                         }
                     }, 3000);
                 } else {
