@@ -28,13 +28,13 @@
         "right": "La calidad es lo primero",
         "effects_left": [
           0,
-          -1,
+          0,
           -1,
           1
         ],
         "effects_right": [
           0,
-          1,
+          0,
           2,
           -2
         ]
@@ -47,13 +47,13 @@
         "right": "¡Adelante!",
         "effects_left": [
           0,
-          1,
+          0,
           2,
           -1
         ],
         "effects_right": [
           0,
-          1,
+          0,
           -2,
           -1
         ]
@@ -66,18 +66,17 @@
         "right": "¡Sube a máster!",
         "effects_left": [
           0,
-          -1,
+          0,
           2,
           -1
         ],
         "effects_right": [
           0,
-          1,
+          0,
           -1,
           -2
         ]
       }
-
     ],
     "medium": [
       {
@@ -88,32 +87,32 @@
         "right": "Hundirás el proyecto",
         "effects_left": [
           0,
-          -5,
-          -5,
-          5
+          -2,
+          -3,
+          3
         ],
         "effects_right": [
           0,
+          2,
           3,
-          3,
-          -4
+          -3
         ]
       },
       {
         "text": "Quiero un aumento o me vuelvo a jamaica",
         "image": "conrad",
         "character": "Dark Console",
-        "left": "Peace!",
-        "right": "Please!",
+        "left": "No!",
+        "right": "sí!",
         "effects_left": [
+          -2,
           0,
-          1,
-          0,
-          -4
+          -2,
+          1
         ],
         "effects_right": [
-          3,
-          1,
+          2,
+          0,
           2,
           -3
         ]
@@ -125,13 +124,13 @@
         "left": "¡Imposible!",
         "right": "Lo que necesites",
         "effects_left": [
-          0,
+          -1,
           1,
-          -2,
-          2
+          -3,
+          1
         ],
         "effects_right": [
-          0,
+          1,
           -1,
           2,
           -2
@@ -146,13 +145,13 @@
         "effects_left": [
           0,
           1,
-          2,
-          -1
+          -2,
+          0
         ],
         "effects_right": [
           0,
-          0,
-          -3,
+          -1,
+          2,
           -1
         ]
       },
@@ -165,8 +164,8 @@
         "effects_left": [
           0,
           0,
-          -3,
-          -3
+          -2,
+          -2
         ],
         "effects_right": [
           1,
@@ -182,19 +181,17 @@
         "left": "¿Qué?",
         "right": "Buen trabajo",
         "effects_left": [
-          -3,
-          -5,
-          -5,
+          -2,
+          1,
+          0,
           0
         ],
         "effects_right": [
-          6,
-          -5,
-          -6,
-          3
+          3,
+          1,
+          0
         ]
       }
-
     ],
     "hard": [
       {
@@ -204,16 +201,16 @@
         "left": "No me interesa",
         "right": "Cuéntame más",
         "effects_left": [
-          5,
+          0,
           -1,
-          2,
-          -5
+          0,
+          0
         ],
         "effects_right": [
+          4,
           0,
-          1,
-          -2,
-          -1
+          4,
+          -3
         ]
       },
       {
@@ -223,16 +220,16 @@
         "left": "¿Qué dice?",
         "right": "Si es cuántico es mejor",
         "effects_left": [
-          -1,
-          3,
-          3,
-          3
+          0,
+          2,
+          2,
+          2
         ],
         "effects_right": [
           6,
-          -3,
-          -3,
-          -4
+          -2,
+          -2,
+          -2
         ]
       },
       {
@@ -242,13 +239,13 @@
         "left": "No",
         "right": "¡Gran idea!",
         "effects_left": [
-          0,
+          -3,
           0,
           0,
           -3
         ],
         "effects_right": [
-          1,
+          3,
           0,
           0,
           3
@@ -262,14 +259,14 @@
         "right": "¿Cómo?",
         "effects_left": [
           -2,
-          -5,
-          -5,
+          -2,
+          -2,
           2
         ],
         "effects_right": [
           -2,
-          -5,
-          -5,
+          -2,
+          -2,
           2
         ]
       },
@@ -281,15 +278,15 @@
         "right": "Tú eres el gurú",
         "effects_left": [
           -1,
-          1,
+          2,
           0,
           0
         ],
         "effects_right": [
           1,
-          -3,
+          -2,
           3,
-          -5
+          -3
         ]
       },
       {
@@ -299,8 +296,8 @@
         "left": "Hágalo devolver",
         "right": "Es una bonificación",
         "effects_left": [
-          -5,
           0,
+          -5,
           0,
           5
         ],
@@ -318,14 +315,14 @@
         "left": "Formateo masivo",
         "right": "Que nadie trabaje",
         "effects_left": [
-          -5,
+          -3,
           0,
-          -5,
-          0
+          -2,
+          -2
         ],
         "effects_right": [
-          -5,
-          1,
+          -3,
+          2,
           -2,
           -2
         ]
@@ -346,7 +343,7 @@
           0,
           5,
           0,
-          0
+          -2
         ]
       }
     ],
