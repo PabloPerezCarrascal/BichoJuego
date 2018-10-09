@@ -8,73 +8,16 @@
         "left": "Ni de broma",
         "right": "Ahora mismo, amo",
         "effects_left": [
-          -3,
-          2,
-          2,
+          -2,
+          1,
+          0,
           -1
         ],
         "effects_right": [
-          3,
-          -4,
-          -4,
-          -1
-        ]
-      },
-      {
-        "text": "Creo que este código necesita un refactor... Necesito un mes",
-        "image": "conrad",
-        "character": "Dark Console",
-        "left": "¡Imposible!",
-        "right": "Lo que necesites",
-        "effects_left": [
+          2,
+          -2,
           0,
-          -3,
-          -3,
-          2
-        ],
-        "effects_right": [
-          -5,
-          3,
-          3,
-          -4
-        ]
-      },
-      {
-        "text": "Los programadores senior son caros... despedimos a 3 y traemos 2 becarios",
-        "image": "conchi",
-        "character": "Conchi",
-        "left": "¡Genial!",
-        "right": "Imposible, hundirás el proyecto",
-        "effects_left": [
-          0,
-          -5,
-          -5,
-          5
-        ],
-        "effects_right": [
-          0,
-          3,
-          3,
-          -4
-        ]
-      },
-      {
-        "text": "Tenemos la campaña en Twitter... he dicho que salimos mañana",
-        "image": "community_manager",
-        "character": "Community Manager Jr",
-        "left": "¿Qué?",
-        "right": "Magnífico trabajo",
-        "effects_left": [
-          -3,
-          -5,
-          -5,
           0
-        ],
-        "effects_right": [
-          6,
-          -5,
-          -6,
-          3
         ]
       },
       {
@@ -116,45 +59,46 @@
         ]
       },
       {
-        "text": "Los despliegues en máquinas físicas son tan vintage... llevémoslo a la nube",
-        "image": "sysadmin",
-        "character": "Master of Puppet",
-        "left": "Ufff",
-        "right": "¡Gran idea!",
+        "text": "En local funciona...",
+        "image": "developer",
+        "character": "Señor Workaround",
+        "left": "¡Prueba en maqueta!",
+        "right": "¡Sube a máster!",
         "effects_left": [
           0,
-          0,
-          0,
-          -3
-        ],
-        "effects_right": [
-          1,
-          0,
-          0,
-          3
-        ]
-      },
-      {
-        "text": "En el siguiente sprint tenemos que meter computación cuántica en el condensador de fluzo",
-        "image": "product",
-        "character": "Bender Motos",
-        "left": "¿Qué dice?",
-        "right": "Si es cuántico es mejor",
-        "effects_left": [
           -1,
-          3,
-          3,
-          3
+          2,
+          -1
         ],
         "effects_right": [
-          6,
-          -3,
-          -3,
-          -4
+          0,
+          1,
+          -1,
+          -2
         ]
       }
+
     ],
     "medium": [
+      {
+        "text": "Los programadores senior son caros... despedimos a 3 y traemos 2 becarios",
+        "image": "conchi",
+        "character": "Conchi",
+        "left": "¡Genial!",
+        "right": "Hundirás el proyecto",
+        "effects_left": [
+          0,
+          -5,
+          -5,
+          5
+        ],
+        "effects_right": [
+          0,
+          3,
+          3,
+          -4
+        ]
+      },
       {
         "text": "Quiero un aumento o me vuelvo a jamaica",
         "image": "conrad",
@@ -162,18 +106,97 @@
         "left": "Peace!",
         "right": "Please!",
         "effects_left": [
-          3,
-          1,
-          2,
-          -3
-        ],
-        "effects_right": [
           0,
           1,
           0,
           -4
+        ],
+        "effects_right": [
+          3,
+          1,
+          2,
+          -3
         ]
       },
+      {
+        "text": "Creo que este código necesita un refactor... Necesito un mes",
+        "image": "conrad",
+        "character": "Dark Console",
+        "left": "¡Imposible!",
+        "right": "Lo que necesites",
+        "effects_left": [
+          0,
+          1,
+          -2,
+          2
+        ],
+        "effects_right": [
+          0,
+          -1,
+          2,
+          -2
+        ]
+      },
+      {
+        "text": "Necesito hacer una prueba que sólo se reproduce de madrugada",
+        "image": "qa_engineer",
+        "character": "Don Pegas",
+        "left": "En horario de oficina",
+        "right": "Horas extra",
+        "effects_left": [
+          0,
+          1,
+          2,
+          -1
+        ],
+        "effects_right": [
+          0,
+          0,
+          -3,
+          -1
+        ]
+      },
+      {
+        "text": "Hay que ir preparandose para el efecto 2038",
+        "image": "qa_engineer",
+        "character": "Don Pegas",
+        "left": "Se arregla solo",
+        "right": "Ahora mismo",
+        "effects_left": [
+          0,
+          0,
+          -3,
+          -3
+        ],
+        "effects_right": [
+          1,
+          0,
+          2,
+          2
+        ]
+      },
+      {
+        "text": "Tenemos la campaña en Twitter... he dicho que salimos mañana",
+        "image": "community_manager",
+        "character": "Community Manager Jr",
+        "left": "¿Qué?",
+        "right": "Buen trabajo",
+        "effects_left": [
+          -3,
+          -5,
+          -5,
+          0
+        ],
+        "effects_right": [
+          6,
+          -5,
+          -6,
+          3
+        ]
+      }
+
+    ],
+    "hard": [
       {
         "text": "Tengo una idea que revolucionará el mundo",
         "image": "conrad",
@@ -194,64 +217,43 @@
         ]
       },
       {
-        "text": "Necesito hacer una prueba que sólo se reproduce de madrugada",
-        "image": "qa_engineer",
-        "character": "Don Pegas",
-        "left": "Sólo se prueba en horario de oficina",
-        "right": "Claro, horas extra",
+        "text": "En el siguiente sprint tenemos que meter computación cuántica en el condensador de fluzo",
+        "image": "product",
+        "character": "Bender Motos",
+        "left": "¿Qué dice?",
+        "right": "Si es cuántico es mejor",
         "effects_left": [
-          0,
-          1,
-          2,
-          -1
+          -1,
+          3,
+          3,
+          3
         ],
         "effects_right": [
-          0,
-          0,
+          6,
           -3,
-          -1
+          -3,
+          -4
         ]
       },
       {
-        "text": "Hay que ir preparandose para el efecto 2038",
-        "image": "qa_engineer",
-        "character": "Don Pegas",
-        "left": "Se arregla cambiando CPUs",
-        "right": "Ahora mismo",
+        "text": "Los despliegues en máquinas físicas son tan vintage... llevémoslo a la nube",
+        "image": "sysadmin",
+        "character": "Master of Puppet",
+        "left": "No",
+        "right": "¡Gran idea!",
         "effects_left": [
           0,
           0,
-          -3,
+          0,
           -3
         ],
         "effects_right": [
           1,
           0,
-          2,
-          2
+          0,
+          3
         ]
       },
-      {
-        "text": "En local funciona...",
-        "image": "developer",
-        "character": "Señor Workaround",
-        "left": "¡Prueba en maqueta!",
-        "right": "¡Merge!",
-        "effects_left": [
-          0,
-          -1,
-          2,
-          -1
-        ],
-        "effects_right": [
-          0,
-          1,
-          -1,
-          -2
-        ]
-      }
-    ],
-    "hard": [
       {
         "text": "Olvidé pagar las licencias",
         "image": "pointy_haired_boss",
