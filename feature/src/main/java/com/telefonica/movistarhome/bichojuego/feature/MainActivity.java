@@ -49,6 +49,11 @@ public class MainActivity extends Activity {
     private ImageView[] indicatorIcons = new ImageView[4];
     private TextView leftText;
     private TextView rightText;
+    private final static int INTERVAL = 1000 * 2; //2 seconds
+    CustomRecognitionListener customListener;
+    SpeechRecognizer mSpeechRecognizer;
+    boolean stuck = false;
+    Intent mSpeechRecognizerIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,12 +68,16 @@ public class MainActivity extends Activity {
         indicatorIcons[3] = findViewById(R.id.icon_money);
         leftText = findViewById(R.id.item_left);
         rightText = findViewById(R.id.item_right);
+        TextView leftArrow = findViewById(R.id.arrow_left);
+        TextView rightArrow = findViewById(R.id.arrow_right);
 
         Typeface typeface = ResourcesCompat.getFont(this, R.font.press_start_2p);
         cardText.setTypeface(typeface);
         scoreText.setTypeface(typeface);
         leftText.setTypeface(typeface);
         rightText.setTypeface(typeface);
+        leftArrow.setTypeface(typeface);
+        rightArrow.setTypeface(typeface);
 
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 1);
 
@@ -88,9 +97,9 @@ public class MainActivity extends Activity {
 //        mediaPlayer.start();
 
 
-        final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+        mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         final Activity act = this;
-        final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "es-ES");
@@ -99,11 +108,45 @@ public class MainActivity extends Activity {
         //audio.getStreamVolume(AudioManager.STREAM_MUSIC);
         //audio.setStreamVolume(AudioManager.STREAM_MUSIC, 0, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 
-        mSpeechRecognizer.setRecognitionListener(new CustomRecognitionListener(this, mSpeechRecognizer, mSpeechRecognizerIntent));
-//        mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
+        customListener = new CustomRecognitionListener(this, mSpeechRecognizer, mSpeechRecognizerIntent);
+        mSpeechRecognizer.setRecognitionListener(customListener);
+        mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
 
         setup();
         reload();
+
+        startRepeatingTask();
+    }
+
+
+    Handler mHandler = new Handler();
+
+    Runnable mHandlerTask = new Runnable()
+    {
+        @Override
+        public void run() {
+            if (customListener.status == 1 && stuck) {
+                mSpeechRecognizer.stopListening();
+                mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
+                stuck = false;
+            } else if (customListener.status == 1 && !stuck) {
+                stuck = true;
+            }
+            if (customListener.status == 3 || customListener.status == 4) {
+                mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
+            }
+            mHandler.postDelayed(mHandlerTask, INTERVAL);
+        }
+    };
+
+    void startRepeatingTask()
+    {
+        mHandlerTask.run();
+    }
+
+    void stopRepeatingTask()
+    {
+        mHandler.removeCallbacks(mHandlerTask);
     }
 
 
@@ -229,8 +272,6 @@ public class MainActivity extends Activity {
         overlayAnimationSet.playTogether(overlayAnimator);
 
         cardStackView.swipe(SwipeDirection.Left, cardAnimationSet, overlayAnimationSet);
-        this.updateIndicators(true);
-        this.updateCard();
     }
 
     public void swipeRight() {
@@ -262,8 +303,6 @@ public class MainActivity extends Activity {
         overlayAnimationSet.playTogether(overlayAnimator);
 
         cardStackView.swipe(SwipeDirection.Right, cardAnimationSet, overlayAnimationSet);
-        this.updateIndicators(false);
-        this.updateCard();
     }
 
 

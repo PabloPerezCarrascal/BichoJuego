@@ -25,6 +25,7 @@
                 android:fontFamily="@font/audiowide"
                 android:gravity="center"
                 android:text="textotexto"
+                android:textColor="@color/greyText"
                 android:textSize="20sp" />
 
 
@@ -40,19 +41,59 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/item_left"
+                    android:id="@+id/arrow_left"
                     android:layout_centerVertical="true"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="10dp"
-                    android:layout_width="230dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/press_start_2p"
                     android:gravity="start"
                     android:padding="5dp"
+                    android:textSize="17sp"
+                    android:text="&lt;"
+                    />
+
+
+                <TextView
+                    android:id="@+id/item_left"
+                    android:layout_centerVertical="true"
+                    android:paddingStart="30dp"
+                    android:paddingRight="10dp"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:gravity="center"
+                    android:padding="5dp"
                     android:textSize="17sp" />
 
+
+                <TextView
+                    android:id="@+id/arrow_right"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:gravity="start"
+                    android:padding="5dp"
+                    android:textSize="17sp"
+                    android:text=">"
+                    android:layout_alignParentEnd="true"/>
+
+                <TextView
+                    android:id="@+id/item_right"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="10dp"
+                    android:paddingEnd="30dp"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:textSize="17sp"
+                    android:layout_alignParentEnd="true"/>
+
+
                 <ImageView
-                    android:layout_width="372dp"
+                    android:layout_width="352dp"
                     android:layout_height="match_parent"
                     android:paddingBottom="20dp"
                     android:paddingLeft="0dp"
@@ -81,20 +122,6 @@
 
 
                 </com.yuyakaido.android.cardstackview.CardStackView>
-
-                <TextView
-                    android:id="@+id/item_right"
-                    android:layout_centerVertical="true"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:layout_width="230dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/press_start_2p"
-                    android:gravity="start"
-                    android:padding="5dp"
-                    android:textSize="17sp"
-                    android:layout_alignParentEnd="true"/>
-
 
             </RelativeLayout>
 
