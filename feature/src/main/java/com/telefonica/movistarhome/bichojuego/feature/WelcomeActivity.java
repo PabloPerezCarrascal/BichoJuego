@@ -2,9 +2,12 @@ package com.telefonica.movistarhome.bichojuego.feature;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.content.res.ResourcesCompat;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class WelcomeActivity extends Activity {
 
@@ -17,9 +20,15 @@ public class WelcomeActivity extends Activity {
     }
 
     public void launchMainActivity(View view) {
-        Log.d(LOG_TAG, "Button clicked!");
-
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+
+        Typeface typeface = ResourcesCompat.getFont(this, R.font.press_start_2p);
+
+        TextView welcomeText = findViewById(R.id.welcome);
+        welcomeText.setTypeface(typeface);
+
+        Button button = findViewById(R.id.button);
+        button.setTypeface(typeface);
     }
 }
