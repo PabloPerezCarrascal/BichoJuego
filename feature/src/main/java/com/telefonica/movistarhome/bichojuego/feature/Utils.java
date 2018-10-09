@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
 public class Utils {
 
@@ -40,39 +41,67 @@ public class Utils {
     }
 
 
-    public static List<Card> createCards(Context context) {
+    public static ArrayList<Card> readJSONcards(Context context, int difficulty) {
+        String[] difficultyModes = {"easy", "medium", "hard"};
+        ArrayList<Card> cards = new ArrayList<Card>();
+
         try {
             JSONObject cardsJson = new JSONObject(loadJSONFromAsset(context));
             JSONObject cardsObject = cardsJson.getJSONObject("cards");
-            String[] dificultyModes = {"easy", "medium", "hard"};
-            List<Card> cards = new ArrayList<>();
-            for (int d = 0; d < dificultyModes.length; d++) {
-                JSONArray cardsSubArray = cardsObject.getJSONArray(dificultyModes[d]);
-                for (int i = 0; i < cardsSubArray.length(); i++) {
-                    JSONObject cardJson = cardsSubArray.getJSONObject(i);
-                    String text = cardJson.getString("text");
-                    String image = cardJson.getString("image");
-                    String character = cardJson.getString("character");
-                    String left = cardJson.getString("left");
-                    String right = cardJson.getString("right");
-                    JSONArray arrayLeft = cardJson.optJSONArray("effects_left");
-                    JSONArray arrayRight = cardJson.optJSONArray("effects_right");
-                    int[] effects_left = new int[arrayLeft.length()];
-                    int[] effects_right = new int[arrayRight.length()];
-                    for (int j = 0; j < arrayLeft.length(); ++j) {
-                        effects_left[j] = arrayLeft.optInt(j);
-                        effects_right[j] = arrayRight.optInt(j);
-                    }
 
-                    cards.add(new Card(text, left, right, character, image, effects_left, effects_right));
+
+            JSONArray cardsSubArray = cardsObject.getJSONArray(difficultyModes[difficulty]);
+            for (int i = 0; i < cardsSubArray.length(); i++) {
+                JSONObject cardJson = cardsSubArray.getJSONObject(i);
+                String text = cardJson.getString("text");
+                String image = cardJson.getString("image");
+                String character = cardJson.getString("character");
+                String left = cardJson.getString("left");
+                String right = cardJson.getString("right");
+                JSONArray arrayLeft = cardJson.optJSONArray("effects_left");
+                JSONArray arrayRight = cardJson.optJSONArray("effects_right");
+                int[] effects_left = new int[arrayLeft.length()];
+                int[] effects_right = new int[arrayRight.length()];
+                for (int j = 0; j < arrayLeft.length(); ++j) {
+                    effects_left[j] = arrayLeft.optInt(j);
+                    effects_right[j] = arrayRight.optInt(j);
                 }
+
+                cards.add(new Card(text, left, right, character, image, effects_left, effects_right));
             }
-            return cards;
 
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
         }
+        return cards;
+    }
+
+
+    public static List<Card> createCards(Context context) {
+
+        ArrayList<Card> easy_cards;
+        ArrayList<Card> medium_cards;
+        ArrayList<Card> hard_cards;
+        ArrayList<Card> all_cards = new ArrayList<Card>();
+
+        easy_cards = readJSONcards(context, 0);
+        medium_cards = readJSONcards(context, 1);
+        hard_cards = readJSONcards(context, 2);
+
+
+        // incremental difficulty
+        Collections.shuffle(easy_cards);
+        medium_cards.addAll(easy_cards);
+        Collections.shuffle(medium_cards);
+        hard_cards.addAll(medium_cards);
+        Collections.shuffle(hard_cards);
+
+        all_cards.addAll(easy_cards);
+        all_cards.addAll(medium_cards);
+        all_cards.addAll(hard_cards);
+
+        return all_cards;
     }
 
     public static Card readCard(Context context, String cardType) {
