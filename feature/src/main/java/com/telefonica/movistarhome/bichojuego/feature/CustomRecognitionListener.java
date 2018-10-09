@@ -28,12 +28,14 @@ public class CustomRecognitionListener implements RecognitionListener {
     public void onReadyForSpeech(Bundle bundle) {
         Log.i("SPEECH", "onReadyForSpeech");
         this.status = 0;
+        act.toggleCheck(true);
     }
 
     @Override
     public void onBeginningOfSpeech() {
         Log.i("SPEECH", "onBeginningOfSpeech");
         this.status = 1;
+        act.toggleCheck(true);
     }
 
     @Override
@@ -49,6 +51,7 @@ public class CustomRecognitionListener implements RecognitionListener {
     public void onEndOfSpeech() {
         Log.i("SPEECH", "onEndOfSpeech");
         this.status = 2;
+        act.toggleCheck(false);
     }
 
     @Override
@@ -57,6 +60,7 @@ public class CustomRecognitionListener implements RecognitionListener {
         this.status = 3;
 //        sp.stopListening();
 //        sp.startListening(in);
+        act.toggleCheck(false);
     }
 
     @Override
@@ -83,6 +87,7 @@ public class CustomRecognitionListener implements RecognitionListener {
         this.status = 4;
 //        sp.stopListening();
 //        sp.startListening(in);
+        act.toggleCheck(false);
     }
 
     @Override
@@ -106,6 +111,7 @@ public class CustomRecognitionListener implements RecognitionListener {
 //            }
 //        }
         this.status = 5;
+        act.toggleCheck(true);
         Log.i("SPEECH", "onPartialResults" + matches);
 
     }

@@ -8,8 +8,10 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Typeface;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
@@ -25,6 +27,7 @@ import android.widget.TextView;
 import com.yuyakaido.android.cardstackview.CardStackView;
 import com.yuyakaido.android.cardstackview.SwipeDirection;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -49,10 +52,11 @@ public class MainActivity extends Activity {
     private ImageView[] indicatorIcons = new ImageView[4];
     private TextView leftText;
     private TextView rightText;
+    private TextView toggle;
     private final static int INTERVAL = 1000 * 2; //2 seconds
     CustomRecognitionListener customListener;
     SpeechRecognizer mSpeechRecognizer;
-    boolean stuck = false;
+    int stuck = 0;
     Intent mSpeechRecognizerIntent;
 
     @Override
@@ -70,6 +74,7 @@ public class MainActivity extends Activity {
         rightText = findViewById(R.id.item_right);
         TextView leftArrow = findViewById(R.id.arrow_left);
         TextView rightArrow = findViewById(R.id.arrow_right);
+        toggle = findViewById(R.id.toggle);
 
         Typeface typeface = ResourcesCompat.getFont(this, R.font.press_start_2p);
         cardText.setTypeface(typeface);
@@ -78,23 +83,24 @@ public class MainActivity extends Activity {
         rightText.setTypeface(typeface);
         leftArrow.setTypeface(typeface);
         rightArrow.setTypeface(typeface);
+        toggle.setTypeface(typeface);
 
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 1);
 
-//        MediaPlayer mediaPlayer = new MediaPlayer();
-//        AssetFileDescriptor afd = this.getApplicationContext().getResources().openRawResourceFd(R.raw.cancion);
-//
-//        mediaPlayer.reset();
-//        //mediaPlayer.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
-//
-//        try {
-//            mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getDeclaredLength());
-//            mediaPlayer.prepare();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        mediaPlayer.start();
+        MediaPlayer mediaPlayer = new MediaPlayer();
+        AssetFileDescriptor afd = this.getApplicationContext().getResources().openRawResourceFd(R.raw.cancion);
+
+        mediaPlayer.reset();
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
+
+        try {
+            mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getDeclaredLength());
+            mediaPlayer.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //mediaPlayer.start();
 
 
         mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
@@ -106,7 +112,7 @@ public class MainActivity extends Activity {
 
         AudioManager audio = (AudioManager) act.getSystemService(Context.AUDIO_SERVICE);
         //audio.getStreamVolume(AudioManager.STREAM_MUSIC);
-        //audio.setStreamVolume(AudioManager.STREAM_MUSIC, 0, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
+        audio.setStreamVolume(AudioManager.STREAM_MUSIC, 0, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 
         customListener = new CustomRecognitionListener(this, mSpeechRecognizer, mSpeechRecognizerIntent);
         mSpeechRecognizer.setRecognitionListener(customListener);
@@ -121,16 +127,15 @@ public class MainActivity extends Activity {
 
     Handler mHandler = new Handler();
 
-    Runnable mHandlerTask = new Runnable()
-    {
+    Runnable mHandlerTask = new Runnable() {
         @Override
         public void run() {
-            if (customListener.status == 1 && stuck) {
+            if (customListener.status == 1 && stuck > 1) {
                 mSpeechRecognizer.stopListening();
                 mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
-                stuck = false;
-            } else if (customListener.status == 1 && !stuck) {
-                stuck = true;
+                stuck = 0;
+            } else if (customListener.status == 1 && stuck < 2) {
+                stuck++;
             }
             if (customListener.status == 3 || customListener.status == 4) {
                 mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
@@ -139,13 +144,11 @@ public class MainActivity extends Activity {
         }
     };
 
-    void startRepeatingTask()
-    {
+    void startRepeatingTask() {
         mHandlerTask.run();
     }
 
-    void stopRepeatingTask()
-    {
+    void stopRepeatingTask() {
         mHandler.removeCallbacks(mHandlerTask);
     }
 
@@ -355,4 +358,8 @@ public class MainActivity extends Activity {
         cardStackView.reverse();
     }
 
+    public void toggleCheck(boolean active) {
+        String text = active ? "\uD83D\uDD34" : "";
+        toggle.setText(text);
+    }
 }
