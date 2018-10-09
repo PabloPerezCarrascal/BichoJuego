@@ -23,5 +23,8 @@ dependencies {
     implementation 'com.android.support:cardview-v7:28.0.0'
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:design:28.0.0'
+    def htextview_version = "0.1.6"
+    compile "com.hanks:htextview-base:$htextview_version"        // base library
+    compile "com.hanks:htextview-fade:$htextview_version"        // optional
 
 }

@@ -2,4 +2,8 @@
 <resources>
     <string name="welcome">Bienvenido al BichoJuego</string>
     <string name="start">Start</string>
+    <string name="tutorial1">Te han contratado como directivo en la empresa de Software más loca que nunca has visto.</string>
+    <string name="tutorial2">Distintos personajes te irán proponiendo acciones que debes aceptar o rechazar.</string>
+    <string name="tutorial3">Tus decisiones afectarán a 4 factores de tu empresa.</string>
+    <string name="tutorial4">Procura mantenerte en ella tomando las decisiones acertadas.</string>
 </resources>

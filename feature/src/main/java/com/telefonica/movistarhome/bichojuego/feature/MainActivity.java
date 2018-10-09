@@ -87,21 +87,20 @@ public class MainActivity extends Activity {
 
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 1);
 
-//        MediaPlayer mediaPlayer = new MediaPlayer();
-//        AssetFileDescriptor afd = this.getApplicationContext().getResources().openRawResourceFd(R.raw.cancion);
-//
-//        mediaPlayer.reset();
-//        mediaPlayer.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
-//
-//        try {
-//            mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getDeclaredLength());
-//            mediaPlayer.prepare();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        MediaPlayer mediaPlayer = new MediaPlayer();
+        AssetFileDescriptor afd = this.getApplicationContext().getResources().openRawResourceFd(R.raw.cancion);
 
-        //mediaPlayer.start();
+        mediaPlayer.reset();
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
 
+        try {
+            mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getDeclaredLength());
+            mediaPlayer.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mediaPlayer.start();
 
         mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         final Activity act = this;
