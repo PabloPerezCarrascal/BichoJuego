@@ -25,6 +25,7 @@
                 android:fontFamily="@font/audiowide"
                 android:gravity="center"
                 android:text="textotexto"
+                android:textColor="@color/greyText"
                 android:textSize="20sp" />
 
 
@@ -42,17 +43,32 @@
                 <TextView
                     android:id="@+id/item_left"
                     android:layout_centerVertical="true"
-                    android:paddingLeft="20dp"
+                    android:paddingStart="20dp"
                     android:paddingRight="10dp"
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/press_start_2p"
-                    android:gravity="start"
+                    android:gravity="center"
                     android:padding="5dp"
                     android:textSize="17sp" />
 
+
+                <TextView
+                    android:id="@+id/item_right"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="10dp"
+                    android:paddingEnd="20dp"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:textSize="17sp"
+                    android:layout_alignParentEnd="true"/>
+
+
                 <ImageView
-                    android:layout_width="372dp"
+                    android:layout_width="352dp"
                     android:layout_height="match_parent"
                     android:paddingBottom="20dp"
                     android:paddingLeft="0dp"
@@ -83,18 +99,35 @@
                 </com.yuyakaido.android.cardstackview.CardStackView>
 
                 <TextView
-                    android:id="@+id/item_right"
+                    android:id="@+id/arrow_left"
                     android:layout_centerVertical="true"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:layout_width="230dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/press_start_2p"
                     android:gravity="start"
-                    android:padding="5dp"
-                    android:textSize="17sp"
-                    android:layout_alignParentEnd="true"/>
+                    android:paddingStart="260dp"
+                    android:textSize="30sp"
+                    android:text="&lt;"
+                    android:shadowColor="@color/background"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="2" />
 
+                <TextView
+                    android:id="@+id/arrow_right"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:gravity="start"
+                    android:paddingEnd="260dp"
+                    android:textSize="30sp"
+                    android:text=">"
+                    android:layout_alignParentEnd="true"
+                    android:shadowColor="@color/background"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="2" />
 
             </RelativeLayout>
 
@@ -111,6 +144,16 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3">
 
+
+                <TextView
+                    android:id="@+id/toggle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/press_start_2p"
+                    android:gravity="center"
+                    android:paddingTop="5dp"
+                    android:text="🔴"
+                    android:textSize="40sp" />
 
             </LinearLayout>
 
@@ -172,7 +215,11 @@
                     android:paddingTop="5dp"
                     android:text="0"
                     android:textColor="@color/colorAccent"
-                    android:textSize="26sp" />
+                    android:textSize="30sp"
+                    android:shadowColor="@color/greyText"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="2" />
 
             </LinearLayout>
 

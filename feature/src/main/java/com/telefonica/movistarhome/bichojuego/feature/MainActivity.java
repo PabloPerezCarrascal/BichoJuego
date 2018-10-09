@@ -8,8 +8,10 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Typeface;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
@@ -25,6 +27,7 @@ import android.widget.TextView;
 import com.yuyakaido.android.cardstackview.CardStackView;
 import com.yuyakaido.android.cardstackview.SwipeDirection;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -49,6 +52,12 @@ public class MainActivity extends Activity {
     private ImageView[] indicatorIcons = new ImageView[4];
     private TextView leftText;
     private TextView rightText;
+    private TextView toggle;
+    private final static int INTERVAL = 1000 * 2; //2 seconds
+    CustomRecognitionListener customListener;
+    SpeechRecognizer mSpeechRecognizer;
+    int stuck = 0;
+    Intent mSpeechRecognizerIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,12 +72,18 @@ public class MainActivity extends Activity {
         indicatorIcons[3] = findViewById(R.id.icon_money);
         leftText = findViewById(R.id.item_left);
         rightText = findViewById(R.id.item_right);
+        TextView leftArrow = findViewById(R.id.arrow_left);
+        TextView rightArrow = findViewById(R.id.arrow_right);
+        toggle = findViewById(R.id.toggle);
 
         Typeface typeface = ResourcesCompat.getFont(this, R.font.press_start_2p);
         cardText.setTypeface(typeface);
         scoreText.setTypeface(typeface);
         leftText.setTypeface(typeface);
         rightText.setTypeface(typeface);
+        leftArrow.setTypeface(typeface);
+        rightArrow.setTypeface(typeface);
+        toggle.setTypeface(typeface);
 
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 1);
 
@@ -76,7 +91,7 @@ public class MainActivity extends Activity {
 //        AssetFileDescriptor afd = this.getApplicationContext().getResources().openRawResourceFd(R.raw.cancion);
 //
 //        mediaPlayer.reset();
-//        //mediaPlayer.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
+//        mediaPlayer.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
 //
 //        try {
 //            mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getDeclaredLength());
@@ -84,26 +99,57 @@ public class MainActivity extends Activity {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-//
-//        mediaPlayer.start();
+
+        //mediaPlayer.start();
 
 
-        final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+        mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         final Activity act = this;
-        final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "es-ES");
 
         AudioManager audio = (AudioManager) act.getSystemService(Context.AUDIO_SERVICE);
         //audio.getStreamVolume(AudioManager.STREAM_MUSIC);
-        //audio.setStreamVolume(AudioManager.STREAM_MUSIC, 0, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
+        audio.setStreamVolume(AudioManager.STREAM_MUSIC, 0, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 
-        mSpeechRecognizer.setRecognitionListener(new CustomRecognitionListener(this, mSpeechRecognizer, mSpeechRecognizerIntent));
-//        mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
+        customListener = new CustomRecognitionListener(this, mSpeechRecognizer, mSpeechRecognizerIntent);
+        mSpeechRecognizer.setRecognitionListener(customListener);
+        mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
 
         setup();
         reload();
+
+        startRepeatingTask();
+    }
+
+
+    Handler mHandler = new Handler();
+
+    Runnable mHandlerTask = new Runnable() {
+        @Override
+        public void run() {
+            if (customListener.status == 1 && stuck > 1) {
+                mSpeechRecognizer.stopListening();
+                mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
+                stuck = 0;
+            } else if (customListener.status == 1 && stuck < 2) {
+                stuck++;
+            }
+            if (customListener.status == 3 || customListener.status == 4) {
+                mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
+            }
+            mHandler.postDelayed(mHandlerTask, INTERVAL);
+        }
+    };
+
+    void startRepeatingTask() {
+        mHandlerTask.run();
+    }
+
+    void stopRepeatingTask() {
+        mHandler.removeCallbacks(mHandlerTask);
     }
 
 
@@ -229,8 +275,6 @@ public class MainActivity extends Activity {
         overlayAnimationSet.playTogether(overlayAnimator);
 
         cardStackView.swipe(SwipeDirection.Left, cardAnimationSet, overlayAnimationSet);
-        this.updateIndicators(true);
-        this.updateCard();
     }
 
     public void swipeRight() {
@@ -262,8 +306,6 @@ public class MainActivity extends Activity {
         overlayAnimationSet.playTogether(overlayAnimator);
 
         cardStackView.swipe(SwipeDirection.Right, cardAnimationSet, overlayAnimationSet);
-        this.updateIndicators(false);
-        this.updateCard();
     }
 
 
@@ -316,4 +358,8 @@ public class MainActivity extends Activity {
         cardStackView.reverse();
     }
 
+    public void toggleCheck(boolean active) {
+        String text = active ? "\uD83D\uDD34" : "";
+        toggle.setText(text);
+    }
 }

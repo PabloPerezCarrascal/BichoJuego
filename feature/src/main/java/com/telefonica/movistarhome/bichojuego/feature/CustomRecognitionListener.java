@@ -15,6 +15,7 @@ public class CustomRecognitionListener implements RecognitionListener {
     MainActivity act;
     SpeechRecognizer sp;
     Intent in;
+    int status = 0; //0 ready 1 beginning 2 end 3 error 4 results 5 partialresults
 
     public CustomRecognitionListener(MainActivity act, SpeechRecognizer sp, Intent in) {
         this.act = act;
@@ -26,11 +27,15 @@ public class CustomRecognitionListener implements RecognitionListener {
     @Override
     public void onReadyForSpeech(Bundle bundle) {
         Log.i("SPEECH", "onReadyForSpeech");
+        this.status = 0;
+        act.toggleCheck(true);
     }
 
     @Override
     public void onBeginningOfSpeech() {
         Log.i("SPEECH", "onBeginningOfSpeech");
+        this.status = 1;
+        act.toggleCheck(true);
     }
 
     @Override
@@ -45,13 +50,17 @@ public class CustomRecognitionListener implements RecognitionListener {
     @Override
     public void onEndOfSpeech() {
         Log.i("SPEECH", "onEndOfSpeech");
+        this.status = 2;
+        act.toggleCheck(false);
     }
 
     @Override
     public void onError(int i) {
         Log.i("SPEECH", "onError" + String.valueOf(i));
-        sp.stopListening();
-        sp.startListening(in);
+        this.status = 3;
+//        sp.stopListening();
+//        sp.startListening(in);
+        act.toggleCheck(false);
     }
 
     @Override
@@ -63,20 +72,22 @@ public class CustomRecognitionListener implements RecognitionListener {
         if (matches != null && act.cardIndex < act.cards.size()) {
             for (int i = 0; i < matches.size(); i++) {
                 if (stripAccentsAndStuff(matches.get(i)).contains(stripAccentsAndStuff(act.cards.get(act.cardIndex).left))) {
-                    Log.i("SPEECH", "SWIPELEFT");
+                    Log.i("SPEECH", "SWIPELEFT" + stripAccentsAndStuff(matches.get(i) + stripAccentsAndStuff(act.cards.get(act.cardIndex).left)));
                     act.swipeLeft();
                     break;
                 }
                 if (stripAccentsAndStuff(matches.get(i)).contains(stripAccentsAndStuff(act.cards.get(act.cardIndex).right))) {
-                    Log.i("SPEECH", "SWIPERIGHT");
+                    Log.i("SPEECH", "SWIPERIGHT" + stripAccentsAndStuff(matches.get(i) + stripAccentsAndStuff(act.cards.get(act.cardIndex).left)));
                     act.swipeRight();
                     break;
                 }
             }
         }
         Log.i("SPEECH", "onResults" + matches);
-        sp.stopListening();
-        sp.startListening(in);
+        this.status = 4;
+//        sp.stopListening();
+//        sp.startListening(in);
+        act.toggleCheck(false);
     }
 
     @Override
@@ -99,6 +110,8 @@ public class CustomRecognitionListener implements RecognitionListener {
 //                }
 //            }
 //        }
+        this.status = 5;
+        act.toggleCheck(true);
         Log.i("SPEECH", "onPartialResults" + matches);
 
     }

@@ -19,6 +19,7 @@ public class Utils {
     public static String stripAccentsAndStuff(String s) {
         s = Normalizer.normalize(s, Normalizer.Form.NFD);
         s = s.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+        s = s.replaceAll("[^a-zA-Z ]", "");
         return s.toLowerCase();
     }
 
