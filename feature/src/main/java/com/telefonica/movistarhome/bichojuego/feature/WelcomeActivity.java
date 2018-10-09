@@ -41,7 +41,7 @@ public class WelcomeActivity extends Activity {
         textView.setTypeface(typeface);
 
         AudioManager audio = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
-        audio.setStreamVolume(AudioManager.STREAM_MUSIC, 7, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
+        audio.setStreamVolume(AudioManager.STREAM_MUSIC, 12, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 
         textView.setAnimationListener(new AnimationListener() {
             @Override
@@ -81,5 +81,16 @@ public class WelcomeActivity extends Activity {
         });
 
         textView.animateText(getString(R.string.tutorial1));
+
+        AssetFileDescriptor afd = getApplicationContext().getResources().openRawResourceFd(R.raw.locu_1);
+
+        mediaPlayer.reset();
+        try {
+            mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getDeclaredLength());
+            mediaPlayer.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mediaPlayer.start();
     }
 }
